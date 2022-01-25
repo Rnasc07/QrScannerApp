@@ -294,8 +294,12 @@ function setResult(display, result, infoToCompare) {
 
    if(result == infoToCompare){
       beepSuccess.play();
+      closeWrapperAndStopCamera();
+      alert('As informações estão corretas!');
    } else {
       beepError.play();
+      closeWrapperAndStopCamera();
+      alert('As informações não correspondem');
    }
 }
 
@@ -345,9 +349,13 @@ buttonsScan.forEach(item => {
 // DESABILITAR A VISUALIZAÇÃO DA DIV RESPONSÁVEL POR EXIBIR A CÂMERA AO CLICAR NO ÍCONE FECHAR
 const btnCloseWrapperCamera = document.getElementById('close-wrapper-display-camera');
 btnCloseWrapperCamera.addEventListener('click', function(){
-   document.getElementById('wrapper-display-camera').style.display = 'none';
-   scanner.stop();
+    closeWrapperAndStopCamera();
 });
+
+function closeWrapperAndStopCamera(){
+    document.getElementById('wrapper-display-camera').style.display = 'none';
+    scanner.stop();
+}
 </script>
 
 <!--
