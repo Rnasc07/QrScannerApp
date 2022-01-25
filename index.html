@@ -284,6 +284,7 @@ const camList = document.getElementById('cam-list');
 const camQrResult = document.getElementById('cam-qr-result');
 const beepSuccess = document.getElementById('beep-success');
 const beepError = document.getElementById('beep-error');
+var scanner = null;
 
 // Função com objetivo de setar o resultado na div "cam-qr-result" que é passada na callback da inicialização do QrScanner, além de comparar o id se existe ou não
 function setResult(display, result, infoToCompare) {
@@ -296,8 +297,6 @@ function setResult(display, result, infoToCompare) {
    } else {
       beepError.play();
    }
-
-   alert(infoToCompare);
 }
 
 /*
@@ -315,7 +314,7 @@ buttonsScan.forEach(item => {
       wrapContent.style.display = 'inline-block'
 
       // Inicialização do QrScanner passando seus devidos argumentos
-      const scanner = new QrScanner(video, result => setResult(camQrResult, result, productId), error => {
+      scanner = new QrScanner(video, result => setResult(camQrResult, result, productId), error => {
          camQrResult.textContent = error;
          camQrResult.style.color = 'inherit';
       });
@@ -347,6 +346,7 @@ buttonsScan.forEach(item => {
 const btnCloseWrapperCamera = document.getElementById('close-wrapper-display-camera');
 btnCloseWrapperCamera.addEventListener('click', function(){
    document.getElementById('wrapper-display-camera').style.display = 'none';
+   scanner.stop();
 });
 </script>
 
