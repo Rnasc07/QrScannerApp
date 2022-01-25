@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@200;400;500;600;700&display=swap');
+
+/* RESETS */
+*{
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+html, body{
+	margin: 0;
+	padding: 0;
+	font-family: 'Outfit', sans-serif;
+	background-color: #EEF2F5;
+}
+
+/* ONDE FICA O LOGO E A INFORMAÇÃO DO USUÁRIO LOGADO*/
+header{
+	position: fixed;
+	width: 100%;
+	display: flex;
+	padding: 10px 20px;
+	background-color: #f9f9f9;
+	justify-content: space-between;
+	align-items: center;
+	z-index: 3;
+}
+#logged-user ion-icon{
+	font-size: 20px;
+	color: #384C71;
+	position: relative;
+	top: 3px;
+	pointer-events: none;
+}
+#logged-user span{
+	color: #444444;
+	font-weight: 400;
+	margin-right: 7px;
+}
+#logged-user a{
+	color: #777777;
+	font-weight: 400;
+}
+
+/* MENU PRINCIPAL */
+nav{
+	position: fixed;
+	width: 70px;
+	height: 100vh;
+	top: 0;
+	background-color: #384C71;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 77px;
+	z-index: 2;
+}
+.link-menu{
+	padding: 5px 0;
+	width: 62px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+	margin-bottom: 10px;
+}
+.link-menu a{
+	color: #8398B4;
+	font-size: 32px;
+}
+.link-menu span{
+	color: #8398B4;
+	font-weight: 300;
+	font-size: 14px;
+}
+.link-menu-active{
+	background-color: #2D425C;
+}
+.link-menu-active::before{
+	content: '';
+	height: 100%;
+	width: 2px;
+	background-color: #f7a600;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.link-menu-active a{
+	color: #f7a600;
+}
+.link-menu-active span{
+	color: #f9f9f9;
+}
+/* menu small não aparecer em telas web */
+#nav-small-devices{
+	display: none;
+}
+
+/* CONTEÚDO PRINCIPAL COM OS FILTROS, TABELA E BOTÕES */
+#content-app{
+	width: calc(100% - 70px);
+	margin-left: 70px;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	top: 60px;
+}
+#title-content{
+	width: 90%;
+	padding: 0 10px;
+	margin-top: 15px;
+	margin-left: 15px;
+}
+#title-content h2{
+	margin: 0;
+	font-size: 1.75em;
+	color: #444444;
+	position: relative;
+	font-weight: 400;
+}
+
+/* ==== ESTILIZAÇÃO PARA A PARTE DE ESCANEAR QRCODE ==== */
+.btn-scan-item{
+	background-color: transparent;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+.btn-scan-item ion-icon{
+	font-size: 19px;
+	color: #384C71;
+	pointer-events: none;
+}
+
+/* Elementos de preview */
+#wrapper-display-camera{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.80);
+	z-index: 100;
+	display: none;
+}
+#close-wrapper-display-camera{
+	background-color: transparent;
+	padding: 0;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	z-index: 102;
+}
+#close-wrapper-display-camera ion-icon{
+	pointer-events: none;
+	font-size: 35px;
+	color: #f3f3f3;
+}
+#preview-camera{
+	border-radius: 3px;
+	max-width: 400px;
+	width: 85%;
+	height: 90vh;
+	background-color: black;
+	position: relative;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 101;
+}
+
+/* ESTILO DOS BOTÕES PARTE SOM */
+#sound-test-wrapper{
+	margin-left: 30px;
+	margin-top: 15px;
+	display: flex;
+}
+#sound-test-wrapper a{
+	margin-right: 25px;
+}
+#btn-sound-success ion-icon{
+	font-size: 45px;
+	color: darkgreen;
+}
+#btn-sound-error ion-icon{
+	font-size: 45px;
+	color: crimson;
+}
+
+/* TELAS RESPONSIVAS */
+@media only screen and (max-width: 765px) {
+	/* HEADER */
+	header{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		position: relative;
+	}
+
+	/* CONFIG MENU TELA WEB */
+	nav{
+		display: none;
+	}
+
+	/* MENU DE NAVEGAÇÃO TELAS MENORES */
+	#nav-small-devices{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		background-color: #384C71;
+		width: 100%;
+		padding: 15px 0;
+	}
+	#nav-small-devices > .menu-small{
+		margin-bottom: 15px;
+	}
+	#nav-small-devices > .menu-small:last-child{
+		margin-bottom: 0px;
+	}
+	#nav-small-devices > .menu-small > a{
+		color: #8398B4;
+		text-decoration: none;
+		padding: 4px 12px;
+		border-radius: 3px;
+	}
+	#nav-small-devices > .menu-small a ion-icon{
+		position: relative;
+		top: 3px;
+		pointer-events: none;
+	}
+	#nav-small-devices > .menu-small.menu-small-active{
+		background-color: #2D425C;
+		border-radius: 3px;
+		padding: 5px;
+	}
+	#nav-small-devices > .menu-small.menu-small-active a{
+		color: #f9f9f9;
+	}
+	#nav-small-devices > .menu-small.menu-small-active a ion-icon{
+		color: #f7a600;
+		pointer-events: none;
+	}
+
+	/* CONTEÚDO PRINCIPAL */
+	#content-app{
+		width: 100%;
+		margin-left: 0;
+		top: 0;
+	}
+
+	/* PARTE DOS FILTROS */
+	#filters-fields{
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+	}
+	#filters-fields > .field-group{
+		width: 95%;
+		margin-bottom: 10px;
+		margin-right: 0;
+	}
+	#filters-fields > .field-group > label, #filters-fields > .field-group > input{
+		width: 100%;
+	}
+
+	/* TABELA DE DADOS */
+	#box-data table thead tr td{
+		font-size: 0.82em;
+	}
+	#box-data table tbody tr td{
+		font-size: 0.75em;
+	}
+
+	/* ESTILIZAÇÃO PREVIEW DA CÂMERA */
+	#wrapper-display-camera{
+		position: fixed;
+		top: 0;
+		left: 0;
+	}
+
+}

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- IMPORTAÇÃO ESTILOS -->
+    <link rel="stylesheet" href="css/index.css">
+
+    <title>Transpiveta - Inicial</title>
+</head>
+
+<body>
+<!-- =======
+É neste espaço que irá aparecer a div que renderiza a camera para o usuário poder efetuar o scan do QRCode ()
+* A div é absoluta! Irá aparecer no meio da tela, e o background por trás irá escurecer
+* O atributo "itemId" guardará a informação de id do produto que vem da tabela. Este atributo irá servir para uma regra de negócio
+-->
+<div id="wrapper-display-camera">
+    <button id="close-wrapper-display-camera"><ion-icon name="close-circle"></ion-icon></button>
+    <!-- WRAPPER PREVIEW CAMERA -->
+    <div id="preview-camera">
+        <video id="qr-video"></video> <!-- Renderiza imagem da câmera dentro desta div -->
+
+        <div id="wrapper-features-camera">
+            <!-- Opção de selecionar câmera frontal ou traseira -->
+            <div id="wrapper-select-camera">
+                <span>Selecionar câmera:</span>
+                <select id="cam-list">
+                    <option value="environment" selected>Câmera traseira (padrão)</option>
+                    <option value="user">Câmera frontal</option>
+                </select>
+            </div>
+
+            <!-- O local em que fica a resposta da leitura pelo QRCode -->
+            <div id="wrapper-result-camera">
+                <b>Resposta detectada do QRCode: </b>
+                <span id="cam-qr-result">...</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- ======= -->
+
+<header>
+    <div id="company-logo">
+        <img src="img/logo-header.png" alt="">
+    </div>
+    <div id="logged-user"><ion-icon name="person"></ion-icon> <span>Olá, Raphael Vinícius</span> <a href="#">Sair</a></div>
+</header>
+
+<!-- MENU DE NAVEGAÇÃO QUE FICA À ESQUERDA -->
+<nav>
+    <div class="link-menu link-menu-active">
+        <a href="index.html"><ion-icon name="home"></ion-icon></a>
+        <span>Início</span>
+    </div>
+
+    <div class="link-menu">
+        <a href="testesom.html"><ion-icon name="musical-notes-outline"></ion-icon></a>
+        <span>Teste som</span>
+    </div>
+</nav>
+
+<!-- MENU PARA TELAS MENORES -->
+<div id="nav-small-devices">
+    <div class="menu-small menu-small-active">
+        <a href="index.html"><ion-icon name="home"></ion-icon>&nbsp; Início</a>
+    </div>
+    <div class="menu-small">
+        <a href="testesom.html"><ion-icon name="musical-notes-outline"></ion-icon>&nbsp; Teste som</a>
+    </div>
+</div>
+
+<!-- CONTEÚDO PRINCIPAL -->
+<div id="content-app">
+    <div id="title-content">
+        <h2>Consultar estoque</h2>
+    </div>
+
+    <div id="box-filters">
+        <h4>Filtros</h4>
+
+        <form id="filter-form" method="post">
+            <div id="filters-fields">
+                <div class="field-group">
+                    <label for="date-input-initial">Data entrada:</label>
+                    <input class="ipt-w-130" name="date-initial-input" id="date-initial-input" type="date">
+                </div>
+
+                <div class="field-group">
+                    <label for="product-input">Produto:</label>
+                    <input class="ipt-w-280" name="product-input" id="product-input" type="search">
+                </div>
+
+                <div class="field-group">
+                    <label for="store-input">Local estoque:</label>
+                    <input class="ipt-w-175" name="stock-input" id="stock-input" type="search">
+                </div>
+
+                <div class="field-group">
+                    <label for="lot-input">Lote:</label>
+                    <input class="ipt-w-120" name="lot-input" id="lot-input" type="search">
+                </div>
+
+                <div class="field-group">
+                    <label for="nf-input">NF:</label>
+                    <input class="ipt-w-120" name="nf-input" id="nf-input" type="search">
+                </div>
+
+                <div id="btn-action-filters">
+                    <button type="submit"><span>Buscar</span> <ion-icon name="search"></ion-icon></button>
+                </div>
+            </div>
+
+            <div id="orderByfilter">
+                <h4>Ordenar por: </h4>
+
+                <label class="group-radio">
+                    <input type="radio" id="radioDate" name="orderBySearch" value="e.dt_Entrada">
+                    <span>Data</span>
+                </label>
+
+                <label class="group-radio">
+                    <input type="radio" id="radioProduct" name="orderBySearch" value="p.descricao" checked>
+                    <span>Produto</span>
+                </label>
+
+                <label class="group-radio">
+                    <input type="radio" id="radioStock" name="orderBySearch" value="local">
+                    <span>Local estoque</span>
+                </label>
+
+                <label class="group-radio">
+                    <input type="radio" id="radioLot" name="orderBySearch" value="e.lote">
+                    <span>Lote</span>
+                </label>
+
+                <label class="group-radio">
+                    <input type="radio" id="radioNf" name="orderBySearch" value="e.nfe">
+                    <span for="radioNf">NF</span>
+                </label>
+
+                <label class="group-radio">
+                    <input type="radio" id="radioQuantity" name="orderBySearch" value="quantidade">
+                    <span for="radioNf">Quantidade</span>
+                </label>
+
+                <label class="group-radio">
+                    <input type="radio" id="radioWeight" name="orderBySearch" value="pesoUnitario">
+                    <span for="radioNf">Peso</span>
+                </label>
+
+                <label class="group-radio">
+                    <input type="radio" id="radioTotalWeight" name="orderBySearch" value="Pesototal">
+                    <span for="radioNf">Peso total</span>
+                </label>
+
+                <div id="ordersFilter">
+                    <a href="#" class="icon-asc icon-order-by" title="Por ordem crescente"><ion-icon name="arrow-up-outline"></ion-icon></a>
+                    <a href="#" class="icon-desc icon-order-by" title="Por ordem decrescente"><ion-icon name="arrow-down-outline"></ion-icon></a>
+                </div>
+
+                <!-- Hidden que guardará a informação do order by (injetada via javascript) -->
+                <input type="hidden" id="hdOrderAscOrDesc" name="hdOrderAscOrDesc">
+            </div>
+        </form>
+
+        <!-- Progress bar que irá carregar enquanto busca por registros na tabela (ocorrerá mais nas requisições ajax) -->
+        <div id="progress-bar-container" class="progress-bar-container">
+            <div class="progress-bar">
+                <div class="progress-bar-value"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="box-data">
+        <div class="main-wrapper">
+            <div class="responsive-table">
+                <table id="table_stock">
+                    <thead>
+                    <tr>
+                        <th class="align-th-left">Data</th>
+                        <th class="align-th-left">Produto</th>
+                        <th class="align-th-left">Local estoque</th>
+                        <th class="align-th-left">Lote</th>
+                        <th class="align-th-left">NF</th>
+                        <th class="align-th-left">Ações</th>
+                    </tr>
+                    </thead>
+
+                    <!-- Conteúdo é injetado via javascript  -->
+                    <tbody id="tbody-result">
+                    <tr>
+                        <td>20/01/2022</td>
+                        <td>Descrição item teste</td>
+                        <td>Informação do local</td>
+                        <td>2313457</td>
+                        <td>004577677</td>
+                        <td>
+                            <button class="btn-scan-item" itemId="475" title="Escanear QRCode"><ion-icon name="scan"></ion-icon></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>20/01/2022</td>
+                        <td>Descrição item teste</td>
+                        <td>Informação do local</td>
+                        <td>2313457</td>
+                        <td>004577677</td>
+                        <td>
+                            <button class="btn-scan-item" itemId="483" title="Escanear QRCode"><ion-icon name="scan"></ion-icon></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>20/01/2022</td>
+                        <td>Descrição item teste</td>
+                        <td>Informação do local</td>
+                        <td>2313457</td>
+                        <td>004577677</td>
+                        <td>
+                            <button class="btn-scan-item" itemId="492" title="Escanear QRCode"><ion-icon name="scan"></ion-icon></button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Paginação e botão imprimir  -->
+        <div id="actions-table">
+            <!-- Será injetado o conteúdo dos links para a paginação via javascript -> arquivo "main_pagination.js" -->
+            <div id="pagination-table" class="pagenumbers">
+                <div class="controls">
+                    <div class="goToFirstPage">Primeira</div>
+                    <div class="prev"><ion-icon name="chevron-back-outline"></ion-icon></div>
+
+                    <!-- Esta div irá conter os links das páginas -->
+                    <div class="numbers"></div>
+
+                    <div class="next"><ion-icon name="chevron-forward-outline"></ion-icon></div>
+                    <div class="goToLastPage">Última</div>
+                </div>
+            </div>
+
+            <form id="form-print-results" target="_blank" action="#" method="post">
+                <!-- Esses campos irão servir para uma regra de negócio no arquivo javascript -->
+                <input type="hidden" name="hdDate" id="hdDate" value="">
+                <input type="hidden" name="hdProduct" id="hdProduct" value="">
+                <input type="hidden" name="hdStock" id="hdStock" value="">
+                <input type="hidden" name="hdLot" id="hdLot" value="">
+                <input type="hidden" name="hdNf" id="hdNf" value="">
+                <input type="hidden" name="hdOrderBy" id="hdOrderBy" value="">
+                <input type="hidden" name="printHdAscOrDesc" id="printHdAscOrDesc" value="">
+
+                <div id="print-button">
+                    <button type="submit"><span>Imprimir</span> <ion-icon name="print"></ion-icon></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Utilização de ion icons: https://ionic.io/ionicons -->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<!-- JS (O QRScanner é utilizando dentro deste arquivo) -->
+<script type="module" src="js/main.js"></script>
+
+<!--
+</body>
+</html>
+

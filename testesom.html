@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- IMPORTAÇÃO ESTILOS -->
+    <link rel="stylesheet" href="css/testesom.css">
+
+    <title>Transpiveta - Inicial</title>
+</head>
+
+<body>
+<!-- =======
+É neste espaço que irá aparecer a div que renderiza a camera para o usuário poder efetuar o scan do QRCode ()
+* A div é absoluta! Irá aparecer no meio da tela, e o background por trás irá escurecer
+* O atributo "itemId" guardará a informação de id do produto que vem da tabela. Este atributo irá servir para uma regra de negócio
+-->
+<div id="wrapper-display-camera">
+    <button id="close-wrapper-display-camera"><ion-icon name="close-circle"></ion-icon></button>
+    <div id="preview-camera" itemId="0">
+        <p id="content-retrieve"></p>
+    </div>
+</div>
+<!-- ======= -->
+
+<header>
+    <div id="company-logo">
+        <img src="img/logo-header.png" alt="">
+    </div>
+    <div id="logged-user"><ion-icon name="person"></ion-icon> <span>Olá, Raphael Vinícius</span> <a href="#">Sair</a></div>
+</header>
+
+<!-- MENU DE NAVEGAÇÃO QUE FICA À ESQUERDA -->
+<nav>
+    <div class="link-menu">
+        <a href="index.html"><ion-icon name="home"></ion-icon></a>
+        <span>Início</span>
+    </div>
+
+    <div class="link-menu link-menu-active">
+        <a href="testesom.html"><ion-icon name="musical-notes-outline"></ion-icon></a>
+        <span>Teste som</span>
+    </div>
+</nav>
+
+<!-- MENU PARA TELAS MENORES -->
+<div id="nav-small-devices">
+    <div class="menu-small">
+        <a href="index.html"><ion-icon name="home"></ion-icon>&nbsp; Início</a>
+    </div>
+    <div class="menu-small menu-small-active">
+        <a href="testesom.html"><ion-icon name="musical-notes-outline"></ion-icon>&nbsp; Teste som</a>
+    </div>
+</div>
+
+<!-- CONTEÚDO PRINCIPAL -->
+<div id="content-app">
+    <div id="title-content">
+        <h2>Tocar aúdio teste</h2>
+    </div>
+    <div id="sound-test-wrapper">
+        <!-- Botões -->
+        <a id="btn-sound-success" href="#"><ion-icon name="musical-note-outline"></ion-icon></a>
+        <a id="btn-sound-error" href="#"><ion-icon name="musical-note-outline"></ion-icon></a>
+        <!-- Áudios que irão tocar -->
+        <audio id="beep-success" src="resources/beep-success.wav"></audio>
+        <audio id="beep-error" src="resources/beep-error.wav"></audio>
+    </div>
+</div>
+
+<!-- Utilização de ion icons: https://ionic.io/ionicons -->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+<script src="js/emit-sound.js"></script>
+</body>
+</html>
+
