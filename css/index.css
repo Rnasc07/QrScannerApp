@@ -547,7 +547,6 @@ th.sorted.descending:after {
 #qr-video{
 	width: 100%;
 	height: 100%;
-	border: 1px solid red;
 }
 
 #wrapper-features-camera{
@@ -557,7 +556,6 @@ th.sorted.descending:after {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	border: 1px solid green;
 	width: 100%;
 }
 #wrapper-features-camera *{

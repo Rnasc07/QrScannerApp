@@ -12,6 +12,10 @@
 </head>
 
 <body>
+<!-- Áudios que irão tocar nas verificações da leitura do qrcode -->
+<audio id="beep-success" src="resources/beep-success.wav"></audio>
+<audio id="beep-error" src="resources/beep-error.wav"></audio>
+
 <!-- =======
 É neste espaço que irá aparecer a div que renderiza a camera para o usuário poder efetuar o scan do QRCode ()
 * A div é absoluta! Irá aparecer no meio da tela, e o background por trás irá escurecer
@@ -278,17 +282,12 @@ QrScanner.WORKER_PATH = './qr-scanner-worker.min.js';
 const video = document.getElementById('qr-video');
 const camList = document.getElementById('cam-list');
 const camQrResult = document.getElementById('cam-qr-result');
-
-camList.addEventListener('change', event => {
-   scanner.setCamera(event.target.value).then(updateFlashAvailability);
-});
+const beepSuccess = document.getElementById('beep-success');
+const beepError = document.getElementById('beep-error');
 
 // Função com objetivo de setar o resultado na div "cam-qr-result" que é passada na callback da inicialização do QrScanner, além de comparar o id se existe ou não
 function setResult(display, result, infoToCompare) {
    // Áudios para emitir (emite o sucesso quando as informações baterem, e o error quando não)
-   const beepSuccess = document.getElementById('beep-success');
-   const beepError = document.getElementById('beep-error');
-
    display.innerHTML = result;
    display.style.color = 'teal';
 
@@ -297,6 +296,8 @@ function setResult(display, result, infoToCompare) {
    } else {
       beepError.play();
    }
+
+   alert(infoToCompare);
 }
 
 /*
@@ -319,6 +320,7 @@ buttonsScan.forEach(item => {
          camQrResult.style.color = 'inherit';
       });
 
+        
       // startar a câmera e listar câmeras disponíveis do dispositivo colocando as em um select
       scanner.start().then(() => {
          updateFlashAvailability();
@@ -331,7 +333,9 @@ buttonsScan.forEach(item => {
          }));
       });
 
-      console.log(productId);
+        camList.addEventListener('change', event => {
+        scanner.setCamera(event.target.value).then(updateFlashAvailability);
+        });
       // const previewCamera = document.getElementById('preview-camera');
       // previewCamera.innerHTML = `
       // <p style="color: red;padding: 20px;">ID PRODUTO: ${productId}</p>
