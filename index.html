@@ -13,7 +13,7 @@
 
 <body>
 <!-- Áudios que irão tocar nas verificações da leitura do qrcode -->
-<audio id="beep-success" src="resources/beep-success.wav"></audio>
+<audio id="beep-success" src="resources/beep-success.mp3"></audio>
 <audio id="beep-error" src="resources/beep-error.wav"></audio>
 
 <!-- =======
@@ -272,7 +272,7 @@
 
 <!-- JS (O QRScanner é utilizando dentro deste arquivo) -->
 <script type="module">
-    /*
+/*
 ==== QR SCANNER CONFIG ====
 */
 import QrScanner from "./qr-scanner.min.js";
@@ -299,7 +299,7 @@ function setResult(display, result, infoToCompare) {
    } else {
       beepError.play();
       closeWrapperAndStopCamera();
-      alert('As informações não correspondem');
+      alert('As informações não correspondem!');
    }
 }
 
