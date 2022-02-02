@@ -8,7 +8,7 @@
     <!-- IMPORTAÇÃO ESTILOS -->
     <link rel="stylesheet" href="css/index.css">
 
-    <title>Transpiveta - Inicial</title>
+    <title>Transpiveta - Conferência de retornos</title>
 </head>
 
 <body>
@@ -39,8 +39,8 @@
 
             <!-- O local em que fica a resposta da leitura pelo QRCode -->
             <div id="wrapper-result-camera">
-                <b>Resposta detectada do QRCode: </b>
-                <span id="cam-qr-result">...</span>
+<!--                <b>Resposta detectada do QRCode: </b>-->
+<!--                <span id="cam-qr-result">...</span>-->
             </div>
         </div>
 
@@ -81,94 +81,27 @@
 <!-- CONTEÚDO PRINCIPAL -->
 <div id="content-app">
     <div id="title-content">
-        <h2>Consultar estoque</h2>
+        <h2>Retornos à conferir</h2>
     </div>
 
     <div id="box-filters">
-        <h4>Filtros</h4>
+        <h4>Filtro</h4>
 
         <form id="filter-form" method="post">
             <div id="filters-fields">
                 <div class="field-group">
-                    <label for="date-input-initial">Data entrada:</label>
+                    <label for="date-input-initial">Data:</label>
                     <input class="ipt-w-130" name="date-initial-input" id="date-initial-input" type="date">
                 </div>
 
                 <div class="field-group">
-                    <label for="product-input">Produto:</label>
-                    <input class="ipt-w-280" name="product-input" id="product-input" type="search">
-                </div>
-
-                <div class="field-group">
-                    <label for="store-input">Local estoque:</label>
-                    <input class="ipt-w-175" name="stock-input" id="stock-input" type="search">
-                </div>
-
-                <div class="field-group">
-                    <label for="lot-input">Lote:</label>
-                    <input class="ipt-w-120" name="lot-input" id="lot-input" type="search">
-                </div>
-
-                <div class="field-group">
-                    <label for="nf-input">NF:</label>
-                    <input class="ipt-w-120" name="nf-input" id="nf-input" type="search">
+                    <label for="product-input">ID Retorno:</label>
+                    <input class="ipt-w-130" name="return-id" id="return-id" type="search">
                 </div>
 
                 <div id="btn-action-filters">
                     <button type="submit"><span>Buscar</span> <ion-icon name="search"></ion-icon></button>
                 </div>
-            </div>
-
-            <div id="orderByfilter">
-                <h4>Ordenar por: </h4>
-
-                <label class="group-radio">
-                    <input type="radio" id="radioDate" name="orderBySearch" value="e.dt_Entrada">
-                    <span>Data</span>
-                </label>
-
-                <label class="group-radio">
-                    <input type="radio" id="radioProduct" name="orderBySearch" value="p.descricao" checked>
-                    <span>Produto</span>
-                </label>
-
-                <label class="group-radio">
-                    <input type="radio" id="radioStock" name="orderBySearch" value="local">
-                    <span>Local estoque</span>
-                </label>
-
-                <label class="group-radio">
-                    <input type="radio" id="radioLot" name="orderBySearch" value="e.lote">
-                    <span>Lote</span>
-                </label>
-
-                <label class="group-radio">
-                    <input type="radio" id="radioNf" name="orderBySearch" value="e.nfe">
-                    <span for="radioNf">NF</span>
-                </label>
-
-                <label class="group-radio">
-                    <input type="radio" id="radioQuantity" name="orderBySearch" value="quantidade">
-                    <span for="radioNf">Quantidade</span>
-                </label>
-
-                <label class="group-radio">
-                    <input type="radio" id="radioWeight" name="orderBySearch" value="pesoUnitario">
-                    <span for="radioNf">Peso</span>
-                </label>
-
-                <label class="group-radio">
-                    <input type="radio" id="radioTotalWeight" name="orderBySearch" value="Pesototal">
-                    <span for="radioNf">Peso total</span>
-                </label>
-
-                <div id="ordersFilter">
-                    <a href="#" class="icon-asc icon-order-by" title="Por ordem crescente"><ion-icon name="arrow-up-outline"></ion-icon></a>
-                    <a href="#" class="icon-desc icon-order-by" title="Por ordem decrescente"><ion-icon name="arrow-down-outline"></ion-icon></a>
-                </div>
-
-                <!-- Hidden que guardará a informação do order by (injetada via javascript) -->
-                <input type="hidden" id="hdOrderAscOrDesc" name="hdOrderAscOrDesc">
             </div>
         </form>
 
@@ -186,11 +119,10 @@
                 <table id="table_stock">
                     <thead>
                     <tr>
+                        <th class="align-th-left">ID</th>
                         <th class="align-th-left">Data</th>
-                        <th class="align-th-left">Produto</th>
-                        <th class="align-th-left">Local estoque</th>
-                        <th class="align-th-left">Lote</th>
-                        <th class="align-th-left">NF</th>
+                        <th class="align-th-left">Nome</th>
+                        <th class="align-th-left">NF-e</th>
                         <th class="align-th-left">Ações</th>
                     </tr>
                     </thead>
@@ -198,31 +130,28 @@
                     <!-- Conteúdo é injetado via javascript  -->
                     <tbody id="tbody-result">
                     <tr>
-                        <td>20/01/2022</td>
-                        <td>Descrição item teste</td>
-                        <td>Informação do local</td>
-                        <td>2313457</td>
-                        <td>004577677</td>
+                        <td><span class="lbl-item">ID: </span>1</td>
+                        <td><span class="lbl-item">Data: </span>20/01/2022</td>
+                        <td><span class="lbl-item">Nome: </span>Descrição item teste</td>
+                        <td><span class="lbl-item">Nf-e: </span>2313457</td>
                         <td>
                             <button class="btn-scan-item" itemId="475" title="Escanear QRCode"><ion-icon name="scan"></ion-icon></button>
                         </td>
                     </tr>
                     <tr>
-                        <td>20/01/2022</td>
-                        <td>Descrição item teste</td>
-                        <td>Informação do local</td>
-                        <td>2313457</td>
-                        <td>004577677</td>
+                        <td><span class="lbl-item">ID: </span>2</td>
+                        <td><span class="lbl-item">Data: </span>20/01/2022</td>
+                        <td><span class="lbl-item">Nome: </span>Descrição item teste</td>
+                        <td><span class="lbl-item">Nf-e: </span>2313457</td>
                         <td>
                             <button class="btn-scan-item" itemId="483" title="Escanear QRCode"><ion-icon name="scan"></ion-icon></button>
                         </td>
                     </tr>
                     <tr>
-                        <td>20/01/2022</td>
-                        <td>Descrição item teste</td>
-                        <td>Informação do local</td>
-                        <td>2313457</td>
-                        <td>004577677</td>
+                        <td><span class="lbl-item">ID: </span>3</td>
+                        <td><span class="lbl-item">Data: </span>20/01/2022</td>
+                        <td><span class="lbl-item">Nome: </span>Descrição item teste</td>
+                        <td><span class="lbl-item">Nf-e: </span>2313457</td>
                         <td>
                             <button class="btn-scan-item" itemId="492" title="Escanear QRCode"><ion-icon name="scan"></ion-icon></button>
                         </td>
@@ -231,44 +160,13 @@
                 </table>
             </div>
         </div>
-
-        <!-- Paginação e botão imprimir  -->
-        <div id="actions-table">
-            <!-- Será injetado o conteúdo dos links para a paginação via javascript -> arquivo "main_pagination.js" -->
-            <div id="pagination-table" class="pagenumbers">
-                <div class="controls">
-                    <div class="goToFirstPage">Primeira</div>
-                    <div class="prev"><ion-icon name="chevron-back-outline"></ion-icon></div>
-
-                    <!-- Esta div irá conter os links das páginas -->
-                    <div class="numbers"></div>
-
-                    <div class="next"><ion-icon name="chevron-forward-outline"></ion-icon></div>
-                    <div class="goToLastPage">Última</div>
-                </div>
-            </div>
-
-            <form id="form-print-results" target="_blank" action="#" method="post">
-                <!-- Esses campos irão servir para uma regra de negócio no arquivo javascript -->
-                <input type="hidden" name="hdDate" id="hdDate" value="">
-                <input type="hidden" name="hdProduct" id="hdProduct" value="">
-                <input type="hidden" name="hdStock" id="hdStock" value="">
-                <input type="hidden" name="hdLot" id="hdLot" value="">
-                <input type="hidden" name="hdNf" id="hdNf" value="">
-                <input type="hidden" name="hdOrderBy" id="hdOrderBy" value="">
-                <input type="hidden" name="printHdAscOrDesc" id="printHdAscOrDesc" value="">
-
-                <div id="print-button">
-                    <button type="submit"><span>Imprimir</span> <ion-icon name="print"></ion-icon></button>
-                </div>
-            </form>
-        </div>
     </div>
 </div>
 
 <!-- Utilização de ion icons: https://ionic.io/ionicons -->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="js/main.js"></script>
 
 <!-- JS (O QRScanner é utilizando dentro deste arquivo) -->
 <script type="module">
@@ -289,16 +187,29 @@ var scanner = null;
 // Função com objetivo de setar o resultado na div "cam-qr-result" que é passada na callback da inicialização do QrScanner, além de comparar o id se existe ou não
 function setResult(display, result, infoToCompare) {
    // Áudios para emitir (emite o sucesso quando as informações baterem, e o error quando não)
-   display.innerHTML = result;
-   display.style.color = 'teal';
+   // display.innerHTML = result;
+   // display.style.color = 'teal';
 
-   if(result == infoToCompare){
+   if(infoToCompare.includes(result)){
       beepSuccess.play();
-      closeWrapperAndStopCamera();
-      alert('As informações estão corretas!');
+      // Preenche a linha em verde daquele item lido
+      setCheckSuccessItem(result);
+
+      // Para o preview da camera por 2 segundos e depois volta a ligar (isso é para evitar ficar disparando o evento da leitura a todo momento)
+       scanner.stop();
+       setTimeout(function(){
+           scanner.start();
+       }, 2000);
+
+      alert("Item " + result + "conferido com sucesso!");
    } else {
       beepError.play();
-      closeWrapperAndStopCamera();
+
+      scanner.stop();
+      setTimeout(function(){
+           scanner.start();
+      }, 2000);
+
       alert('As informações não correspondem!');
    }
 }
@@ -317,8 +228,14 @@ buttonsScan.forEach(item => {
       const wrapContent = document.getElementById('wrapper-display-camera');
       wrapContent.style.display = 'inline-block'
 
+       // Busca e exibe os subitens do id retorno clicado e os exibem
+       createTableWithItens(productId);
+
+      // Recuperar os ids dos subitens contidos na tabela para posterior fazer a validação
+       var allIds = getAllIdsSubItens();
+
       // Inicialização do QrScanner passando seus devidos argumentos
-      scanner = new QrScanner(video, result => setResult(camQrResult, result, productId), error => {
+      scanner = new QrScanner(video, result => setResult(camQrResult, result, allIds), error => {
          camQrResult.textContent = error;
          camQrResult.style.color = 'inherit';
       });
@@ -355,6 +272,67 @@ btnCloseWrapperCamera.addEventListener('click', function(){
 function closeWrapperAndStopCamera(){
     document.getElementById('wrapper-display-camera').style.display = 'none';
     scanner.stop();
+}
+
+// FUNÇÃO RESPONSÁVEL POR BUSCAR OS SUBITENS DAQUELE RETORNO E INJETAR A TABELA NA DIV RESPONSÁVEL
+function createTableWithItens(idItemReturn){
+    let contentTable = '';
+
+    // Local onde sejá injetado a tabela
+    const dataContent = document.getElementById('wrapper-result-camera');
+
+    /*
+    Gerar a tabela (NO OFICIAL SERÁ CHAMADO UM AJAX BUSCANDO OS CONTEÚDOS ATRAVÉS DO ID. DEPOIS MONTAR COM BASE NA MESMA LÓGICA)
+    > buscarSubitensAjax()
+    */
+    // Primeira parte da tabela
+    contentTable += `
+    <table>
+        <thead>
+        <tr>
+            <th>Produto</th>
+            <th>Local estoque</th>
+            <th>Lote</th>
+            <th>Nf-e</th>
+        </tr>
+        </thead>
+        <tbody id="body-results-subitens">
+    `;
+
+    // Linhas da tabela geradas dinamicamente
+    const countItens = 3;
+    for(let i = 450; i < 450 + countItens; i++){
+        contentTable += `
+        <tr id="subitem-retorno-${i}">
+            <td>Descri produto</td>
+            <td>Descri local Lorem ipsum dolor sit amet, consectetur adip</td>
+            <td>6564564</td>
+            <td>2257987</td>
+        </tr>
+        `;
+    }
+
+    // Fim tabela ([TEMP] estou deixando o cam-result temporariamente para evitar bugs no código)
+    contentTable += `
+        </tbody>
+    </table>
+    <span id="cam-qr-result">...</span>
+    `;
+
+    // Injetar tabela dentro da div principal
+    dataContent.innerHTML = contentTable;
+}
+
+// FUNÇÃO RESPONSÁVEL POR GUARDAR OS ID'S DE CADA ITEM CONTIDO NA "TABELA DE SUBITENS" E GUARDÁ-LOS EM UM ARRAY QUE SERVIRÁ PARA UMA VALIDAÇÃO POSTERIOR
+function getAllIdsSubItens(){
+    let allIds = [];
+
+    const linesTable = document.querySelectorAll('#body-results-subitens tr');
+    for(let i = 0; i < linesTable.length; i++){
+        allIds.push(linesTable[i].id);
+    }
+
+    return allIds;
 }
 </script>
 

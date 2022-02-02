@@ -106,22 +106,22 @@ nav{
 	top: 60px;
 }
 #title-content{
-	width: 90%;
+	width: 100%;
 	padding: 0 10px;
 	margin-top: 15px;
 }
 #title-content h2{
 	margin: 0;
-	font-size: 1.75em;
+	font-size: 1.95em;
 	color: #444444;
 	position: relative;
-	left: -10px;
+	text-align: center;
 	font-weight: 400;
 }
 
 /* PARTE DOS FILTROS */
 #box-filters{
-	width: 90%;
+	width: auto;
 	padding: 10px 10px 0 10px;
 	background-color: #f9f9f9;
 	border-radius: 3px;
@@ -259,45 +259,7 @@ input[type="search" i]::-webkit-search-cancel-button{
 .group-radio:last-child{
 	margin-right: 0;
 }
-#orderByfilter > label > input[type="radio"] {
-	display: none;
-}
-#orderByfilter > label > input[type="radio"] + *::before {
-	content: "";
-	display: inline-block;
-	vertical-align: bottom;
-	width: 0.95rem;
-	height: 0.95rem;
-	margin-right: 0.3rem;
-	border-radius: 50%;
-	border-style: solid;
-	border-width: 0.1rem;
-	border-color: #d6d6d6;
-	background-color: #ffffff;
-	cursor: pointer;
-}
-#orderByfilter > label > input[type="radio"]:checked + * {
-	color: #384C71;
-}
-#orderByfilter > label > input[type="radio"]:checked + *::before {
-	background: radial-gradient(#384C71 0%, #384C71 50%, transparent 60%, transparent);
-	border-color: #384C71;
-}
-#orderByfilter > label > span{
-	color: #777777;
-	font-weight: 400;
-	font-size: 0.90em;
-}
-.icon-asc ion-icon, .icon-desc ion-icon{
-	position: relative;
-	top: 2px;
-	color: #cccccc;
-	font-size: 18px;
-	pointer-events: none;
-}
-.icon-asc{
-	margin-right: 5px;
-}
+
 /*TEMP*/
 /*.icon-order-by-default ion-icon{*/
 /*    color: #384C71;*/
@@ -389,10 +351,10 @@ th.sorted.descending:after {
 }
 
 #box-data table tbody tr:nth-child(odd){
-	background-color: #eeeeee !important;
+	background-color: #eeeeee;
 }
 #box-data table tbody tr:nth-child(even){
-	background-color: #e4e4e4 !important;;
+	background-color: #e4e4e4;
 }
 #box-data table tbody tr:first-child{
 	border-top: 1px solid #ddd;
@@ -567,7 +529,31 @@ th.sorted.descending:after {
 #wrapper-result-camera{
 	background-color: #ffffff;
 	color: #222222;
+	width: 100%;
+	height: 100px;
+	overflow-y: auto;
 }
+
+/* Estilo da mini tabela que irá aparecer junto com a câmera */
+#wrapper-result-camera table{
+	border-collapse: collapse;
+	width: 100%;
+}
+#wrapper-result-camera table th, #wrapper-result-camera table td{
+	border: 1px solid #dddddd;
+	padding: 3px;
+	font-size: 0.70em;
+}
+#wrapper-result-camera table th{
+	text-align: left;
+}
+
+
+/* Esta classe trata da visualização das labels para cada td. Habilitar apenas em telas menores */
+.lbl-item{
+	display: none;
+}
+
 /* TELAS RESPONSIVAS */
 @media only screen and (max-width: 765px) {
 	/* HEADER */
@@ -645,11 +631,49 @@ th.sorted.descending:after {
 	}
 
 	/* TABELA DE DADOS */
-	#box-data table thead tr td{
-		font-size: 0.82em;
-	}
 	#box-data table tbody tr td{
-		font-size: 0.75em;
+		font-size: 0.92em;
+		font-weight: 500;
+	}
+	/* DADOS DA TABELA */
+	/* Não há necessidade de mostrar o cabeçalho por conta dos ícones que irá aparecer ao lado de cada informação */
+	#box-data thead{
+		display: none;
+	}
+	#box-data tr:first-child{
+		border-top: none !important;
+	}
+	#box-data tr {
+		padding: 7px;
+		display: flex;
+		flex-direction: column;
+		margin: 0.9em 0;
+		position:relative;
+		border-radius: 2px;
+		background-color: #f1f1f1 !important;
+	}
+	.lbl-item{
+		display: block;
+		color: #777777;
+		margin-right: 4px;
+	}
+	#box-data td {
+		flex: 1;
+		display: flex;
+		justify-content: center;
+	}
+	/* Ícone escanear */
+	#box-data td:last-child{
+		position: absolute;
+		top: 0px;
+		right: 5px;
+	}
+	td ion-icon{
+		background-color: #dedede;
+		border-radius: 50%;
+		padding: 7px;
+		color: red;
+		font-size: 25px !important;
 	}
 
 	/* ESTILIZAÇÃO PREVIEW DA CÂMERA */
