@@ -11,3 +11,5 @@ function setCheckSuccessItem(elementName){
 
 // setCheckSuccessItem('data-return-452');
 // setCheckSuccessItem('data-return-453');
+
+alert('App versão 2.01');

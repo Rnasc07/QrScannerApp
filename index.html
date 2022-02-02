@@ -206,37 +206,17 @@ var scanner = null;
 // Função com objetivo de setar o resultado na div "cam-qr-result" que é passada na callback da inicialização do QrScanner, além de comparar o id se existe ou não
 function setResult(result, infoToCompare) {
    // Áudios para emitir (emite o sucesso quando as informações baterem, e o error quando não)
-   // display.innerHTML = result;
-   // display.style.color = 'teal';
+   if(infoToCompare.includes(result)){
+      beepSuccess.play();
+      // Preenche a linha em verde daquele item lido
+      setCheckSuccessItem(result);
 
-    if(infoToCompare.includes(result)){
-        alert('Passou pela validação');
-    }
+      alert("Item " + result + "conferido com sucesso!");
+   } else {
+      beepError.play();
 
-    alert(result);
-    //alert(infoToCompare);
-   // if(infoToCompare.includes(result)){
-   //    beepSuccess.play();
-   //    // Preenche a linha em verde daquele item lido
-   //    setCheckSuccessItem(result);
-   //
-   //    // Para o preview da camera por 2 segundos e depois volta a ligar (isso é para evitar ficar disparando o evento da leitura a todo momento)
-   //     scanner.stop();
-   //     setTimeout(function(){
-   //         scanner.start();
-   //     }, 2000);
-   //
-   //    alert("Item " + result + "conferido com sucesso!");
-   // } else {
-   //    beepError.play();
-   //
-   //    scanner.stop();
-   //    setTimeout(function(){
-   //         scanner.start();
-   //    }, 2000);
-   //
-   //    alert('As informações não correspondem!');
-   // }
+      alert('As informações não correspondem!');
+   }
 }
 
 /*
@@ -258,7 +238,6 @@ buttonsScan.forEach(item => {
 
       // Recuperar os ids dos subitens contidos na tabela para posterior fazer a validação
       var allIds = getAllIdsSubItens();
-      alert('teste 2')
 
       // Inicialização do QrScanner passando seus devidos argumentos
       scanner = new QrScanner(video, result => setResult(result, allIds), error => {
