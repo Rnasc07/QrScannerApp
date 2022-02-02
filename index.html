@@ -186,10 +186,14 @@ const beepError = document.getElementById('beep-error');
 var scanner = null;
 
 // Função com objetivo de setar o resultado na div "cam-qr-result" que é passada na callback da inicialização do QrScanner, além de comparar o id se existe ou não
-function setResult(display, result, infoToCompare) {
+function setResult(result, infoToCompare) {
    // Áudios para emitir (emite o sucesso quando as informações baterem, e o error quando não)
    display.innerHTML = result;
    display.style.color = 'teal';
+
+    if(infoToCompare.includes(result)){
+        alert('Passou pela validação');
+    }
 
     alert(result);
     alert(infoToCompare);
@@ -232,15 +236,14 @@ buttonsScan.forEach(item => {
       wrapContent.style.display = 'inline-block'
 
        // Busca e exibe os subitens do id retorno clicado e os exibem
-       //createTableWithItens(productId);
+       createTableWithItens(productId);
 
       // Recuperar os ids dos subitens contidos na tabela para posterior fazer a validação
-       //var allIds = getAllIdsSubItens();
+       var allIds = getAllIdsSubItens();
 
       // Inicialização do QrScanner passando seus devidos argumentos
-      scanner = new QrScanner(video, result => setResult(camQrResult, result, productId), error => {
-         camQrResult.textContent = error;
-         camQrResult.style.color = 'inherit';
+      scanner = new QrScanner(video, result => setResult(result, allIds), error => {
+         console.log(error);
       });
 
         
@@ -319,7 +322,6 @@ function createTableWithItens(idItemReturn){
     contentTable += `
         </tbody>
     </table>
-    <span id="cam-qr-result">...</span>
     `;
 
     // Injetar tabela dentro da div principal
