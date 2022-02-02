@@ -187,8 +187,8 @@ var scanner = null;
 // Função com objetivo de setar o resultado na div "cam-qr-result" que é passada na callback da inicialização do QrScanner, além de comparar o id se existe ou não
 function setResult(display, result, infoToCompare) {
    // Áudios para emitir (emite o sucesso quando as informações baterem, e o error quando não)
-   // display.innerHTML = result;
-   // display.style.color = 'teal';
+   display.innerHTML = result;
+   display.style.color = 'teal';
 
     alert(result);
     alert(infoToCompare);
@@ -238,8 +238,7 @@ buttonsScan.forEach(item => {
 
       // Inicialização do QrScanner passando seus devidos argumentos
       scanner = new QrScanner(video, result => setResult(camQrResult, result, allIds), error => {
-         camQrResult.textContent = error;
-         camQrResult.style.color = 'inherit';
+         alert(error);
       });
 
         
