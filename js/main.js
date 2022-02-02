@@ -11,3 +11,8 @@ function setCheckSuccessItem(elementName){
 
 // setCheckSuccessItem('data-return-452');
 // setCheckSuccessItem('data-return-453');
+
+
+let arrayInfo = ['1', '2', '3'];
+
+alert(arrayInfo);
