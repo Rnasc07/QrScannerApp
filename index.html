@@ -204,17 +204,17 @@ const beepError = document.getElementById('beep-error');
 var scanner = null;
 
 // Função com objetivo de setar o resultado na div "cam-qr-result" que é passada na callback da inicialização do QrScanner, além de comparar o id se existe ou não
-function setResult(result, infoToCompare) {
+function setResult(result) {
    // Áudios para emitir (emite o sucesso quando as informações baterem, e o error quando não)
    display.innerHTML = result;
    display.style.color = 'teal';
 
-    if(infoToCompare.includes(result)){
-        alert('Passou pela validação');
-    }
+    // if(infoToCompare.includes(result)){
+    //     alert('Passou pela validação');
+    // }
 
     alert(result);
-    alert(infoToCompare);
+    //alert(infoToCompare);
    // if(infoToCompare.includes(result)){
    //    beepSuccess.play();
    //    // Preenche a linha em verde daquele item lido
@@ -258,10 +258,10 @@ buttonsScan.forEach(item => {
 
       // Recuperar os ids dos subitens contidos na tabela para posterior fazer a validação
       //  var allIds = getAllIdsSubItens();
-      var allIds = ['subitem-retorno-450'];
+      alert('teste 1')
 
       // Inicialização do QrScanner passando seus devidos argumentos
-      scanner = new QrScanner(video, result => setResult(result, allIds), error => {
+      scanner = new QrScanner(video, result => setResult(result), error => {
          console.log(error);
       });
 
