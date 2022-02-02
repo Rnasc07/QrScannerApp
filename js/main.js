@@ -9,6 +9,5 @@ function setCheckSuccessItem(elementName){
     handleEl.style.color = 'rgba(22,163,74, 0.9)';
 }
 
-//setCheckSuccessItem('data-return-451');
 // setCheckSuccessItem('data-return-452');
 // setCheckSuccessItem('data-return-453');

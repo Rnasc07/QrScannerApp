@@ -532,6 +532,7 @@ th.sorted.descending:after {
 	width: 100%;
 	height: 100px;
 	overflow-y: auto;
+	padding: 7px;
 }
 
 /* Estilo da mini tabela que irá aparecer junto com a câmera */

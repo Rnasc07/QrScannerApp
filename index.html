@@ -190,28 +190,30 @@ function setResult(display, result, infoToCompare) {
    // display.innerHTML = result;
    // display.style.color = 'teal';
 
-   if(infoToCompare.includes(result)){
-      beepSuccess.play();
-      // Preenche a linha em verde daquele item lido
-      setCheckSuccessItem(result);
-
-      // Para o preview da camera por 2 segundos e depois volta a ligar (isso é para evitar ficar disparando o evento da leitura a todo momento)
-       scanner.stop();
-       setTimeout(function(){
-           scanner.start();
-       }, 2000);
-
-      alert("Item " + result + "conferido com sucesso!");
-   } else {
-      beepError.play();
-
-      scanner.stop();
-      setTimeout(function(){
-           scanner.start();
-      }, 2000);
-
-      alert('As informações não correspondem!');
-   }
+    console.log(result);
+    console.log(infoToCompare);
+   // if(infoToCompare.includes(result)){
+   //    beepSuccess.play();
+   //    // Preenche a linha em verde daquele item lido
+   //    setCheckSuccessItem(result);
+   //
+   //    // Para o preview da camera por 2 segundos e depois volta a ligar (isso é para evitar ficar disparando o evento da leitura a todo momento)
+   //     scanner.stop();
+   //     setTimeout(function(){
+   //         scanner.start();
+   //     }, 2000);
+   //
+   //    alert("Item " + result + "conferido com sucesso!");
+   // } else {
+   //    beepError.play();
+   //
+   //    scanner.stop();
+   //    setTimeout(function(){
+   //         scanner.start();
+   //    }, 2000);
+   //
+   //    alert('As informações não correspondem!');
+   // }
 }
 
 /*
