@@ -38,13 +38,31 @@
             </div>
 
             <!-- O local em que fica a resposta da leitura pelo QRCode -->
+            <div id="wrapper-result-camera">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Local estoque</th>
+                        <th>Lote</th>
+                        <th>Nf-e</th>
+                    </tr>
+                    </thead>
+                    <tbody id="body-results-subitens">
+                        <tr id="subitem-retorno-450">
+                            <td>Descrição produto</td>
+                            <td>Descrição local</td>
+                            <td>6564564</td>
+                            <td>2257987</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span id="cam-qr-result">...</span>
+<!--                <b>Resposta detectada do QRCode: </b>-->
+<!--                <span id="cam-qr-result">...</span>-->
+            </div>
         </div>
 
-    </div>
-    <div id="wrapper-result-camera">
-        <span id="cam-qr-result">...</span>
-        <!--                <b>Resposta detectada do QRCode: </b>-->
-        <!--                <span id="cam-qr-result">...</span>-->
     </div>
 </div>
 <!-- ======= -->
@@ -239,7 +257,8 @@ buttonsScan.forEach(item => {
        createTableWithItens(productId);
 
       // Recuperar os ids dos subitens contidos na tabela para posterior fazer a validação
-       var allIds = getAllIdsSubItens();
+      //  var allIds = getAllIdsSubItens();
+      var allIds = ['subitem-retorno-450'];
 
       // Inicialização do QrScanner passando seus devidos argumentos
       scanner = new QrScanner(video, result => setResult(result, allIds), error => {
@@ -310,8 +329,8 @@ function createTableWithItens(idItemReturn){
     for(let i = 450; i < 450 + countItens; i++){
         contentTable += `
         <tr id="subitem-retorno-${i}">
-            <td>Descri produto</td>
-            <td>Descri local Lorem ipsum dolor sit amet, consectetur adip</td>
+            <td>Descrição produto</td>
+            <td>Descrição local</td>
             <td>6564564</td>
             <td>2257987</td>
         </tr>
