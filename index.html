@@ -238,7 +238,8 @@ buttonsScan.forEach(item => {
 
       // Inicialização do QrScanner passando seus devidos argumentos
       scanner = new QrScanner(video, result => setResult(camQrResult, result, allIds), error => {
-         alert(error);
+         camQrResult.textContent = error;
+         camQrResult.style.color = 'inherit';
       });
 
         
